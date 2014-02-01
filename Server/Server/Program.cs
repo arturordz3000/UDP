@@ -12,7 +12,7 @@ namespace Server
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Inicializando servidor...");
+            Console.WriteLine("Initializing server...");
             udpServer = new UdpServer(6100);
 
             int result = udpServer.Start();

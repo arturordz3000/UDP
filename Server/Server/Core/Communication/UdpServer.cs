@@ -40,7 +40,12 @@ namespace Server.Core.Communication
                 Console.WriteLine("Received parameters: {0}", receivedParameters);
                 Console.WriteLine("Sending to database...");
 
-                DatabaseManager.InsertToDatabase(RawDataManager.ConvertToDictionary(DatabaseManager.Keys, receivedParameters));
+                bool rowWasInserted = DatabaseManager.InsertToDatabase(RawDataManager.ConvertToDictionary(DatabaseManager.Keys, receivedParameters));
+
+                if (rowWasInserted)
+                    Console.WriteLine("Data inserted successfully!");
+                else
+                    Console.WriteLine("Could not insert the data into database");
             }
 
             return result;
@@ -51,7 +56,7 @@ namespace Server.Core.Communication
             get { return isServerRunning; }
         }
 
-        public UdpClient UdpServer
+        public UdpClient Server
         {
             get { return udpServer; }
             set { udpServer = value; }
