@@ -35,7 +35,8 @@ namespace Server.Core.Communication
             {
                 Console.WriteLine("Awaiting for data...");
 
-                string[] receivedParameters = RawDataManager.GetParametersFromMessage(udpServer.Receive(ref this.ipEndPoint), "|".ToCharArray());
+                IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
+                string[] receivedParameters = RawDataManager.GetParametersFromMessage(udpServer.Receive(ref sender), "|,;".ToCharArray());
 
                 Console.WriteLine("Received parameters: {0}", receivedParameters);
                 Console.WriteLine("Sending to database...");
