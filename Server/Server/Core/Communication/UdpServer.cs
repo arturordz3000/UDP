@@ -41,7 +41,10 @@ namespace Server.Core.Communication
                 Console.WriteLine("Received parameters: {0}", receivedParameters);
                 Console.WriteLine("Sending to database...");
 
-                bool rowWasInserted = DatabaseManager.InsertToDatabase(RawDataManager.ConvertToDictionary(DatabaseManager.Keys, receivedParameters));
+                bool rowWasInserted = false;
+
+                if (DatabaseManager.Start())
+                    rowWasInserted = DatabaseManager.InsertToDatabase(RawDataManager.ConvertToDictionary(DatabaseManager.Keys, receivedParameters));
 
                 if (rowWasInserted)
                     Console.WriteLine("Data inserted successfully!");

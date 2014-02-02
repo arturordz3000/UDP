@@ -23,10 +23,31 @@ namespace Server.Core.Managers
                                               "PASSWORD = " + password + ";";
         private static String tableName = "trackinglog";
 
-        public static MySqlConnection connection = new MySqlConnection(stringConnection);
-        public static MySqlCommand command = connection.CreateCommand();
+        public static MySqlConnection connection;
+        public static MySqlCommand command;
 
         public static string[] Keys = { "TimeReceived", "Latitude", "Longitude", "Speed", "StatusBit", "QtyLt", "StatusBitTank1", "QtyLtTank1", "StatusBitTank2", "QtyLtTank2" };
+
+        public static bool Start()
+        {
+            if (connection == null)
+            {
+                try
+                {
+                    Console.WriteLine("Connecting to database...");
+                    connection = new MySqlConnection(stringConnection);
+                    command = connection.CreateCommand();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Could not connect to database: {0}", ex.Message);
+                    return false;
+                }
+            }
+
+            return true;
+        }
 
         public static bool InsertToDatabase(Dictionary<string, string> rows)
         {
