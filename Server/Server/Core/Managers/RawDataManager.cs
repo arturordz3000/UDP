@@ -22,9 +22,16 @@ namespace Server.Core.Managers
         {
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
 
-            if (keys.Count() == values.Count())
+            if (keys.Count() == values.Count() || keys.Count() > values.Count())
             {
                 for (int i = 0; i < values.Count(); i++)
+                {
+                    dictionary.Add(keys[i], values[i]);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < keys.Count(); i++)
                 {
                     dictionary.Add(keys[i], values[i]);
                 }
