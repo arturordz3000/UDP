@@ -39,7 +39,7 @@ namespace Server.Core.Communication
                 string[] receivedParameters = RawDataManager.GetParametersFromMessage(udpServer.Receive(ref sender), "|,;".ToCharArray());
 
                 Console.WriteLine("Received parameters: {0}", receivedParameters);
-                Console.WriteLine("Sending to database...");
+                /*Console.WriteLine("Sending to database...");
 
                 bool rowWasInserted = false;
 
@@ -49,7 +49,7 @@ namespace Server.Core.Communication
                 if (rowWasInserted)
                     Console.WriteLine("Data inserted successfully!");
                 else
-                    Console.WriteLine("Could not insert the data into database");
+                    Console.WriteLine("Could not insert the data into database");*/
             }
 
             return result;
