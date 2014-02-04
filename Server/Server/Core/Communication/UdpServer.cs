@@ -43,7 +43,7 @@ namespace Server.Core.Communication
 
                 bool rowWasInserted = false;
 
-                if (DatabaseManager.Start())
+                if (DatabaseManager.Start(ServerType.SqlServer))
                     rowWasInserted = DatabaseManager.InsertToDatabase(RawDataManager.ConvertToDictionary(DatabaseManager.Keys, receivedParameters));
 
                 if (rowWasInserted)
